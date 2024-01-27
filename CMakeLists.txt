@@ -23,6 +23,7 @@ add_definitions(-DVERBOSE -DDEBUG)
 set(SOURCES
     src/main.cpp
     src/pts.cpp
+    src/hw_config.c
 )
 
 # Add all executables
@@ -50,7 +51,8 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} 
     pico_stdlib
     hardware_i2c
-    FatFs_SPI
+    no-OS-FatFS-SD-SDIO-SPI-RPi-Pico
+    NPA730-Pico
 )
 
 # Enable serial over USB

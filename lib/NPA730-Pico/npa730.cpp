@@ -1,7 +1,7 @@
 #include "npa730.hpp"
 #include <cstdio>
 
-NPA730::NPA730(i2c_inst_t* i2c_type) {
+NPA730::NPA730(i2c_inst_t *i2c_type) {
     i2c = i2c_type;
 }
 
@@ -29,6 +29,8 @@ bool NPA730::read(double *pressure, double *temp) {
     // for (int i = 0; i < 4; i++) {
     //     printf("%d: %d\n", i, buf[i]);
     // }
+    *pressure = pressure_reading;
+    *temp = temp_reading;
 
     return true;
 }
