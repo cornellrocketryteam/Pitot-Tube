@@ -2,7 +2,7 @@
 #include "pins.hpp"
 
 /* Configuration of RP2040 hardware SPI object */
-static spi_t spi = {  
+static spi_t spi = {
     .hw_inst = SPI_PORT,
     .sck_gpio = SPI_SCK,
     .mosi_gpio = SPI_MOSI,
@@ -17,7 +17,7 @@ static sd_spi_if_t spi_if = {
 };
 
 /* Configuration of the SD Card socket object */
-static sd_card_t sd_card = {   
+static sd_card_t sd_card = {
     .type = SD_IF_SPI,
     .spi_if_p = &spi_if
 };

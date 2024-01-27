@@ -15,7 +15,6 @@ private:
     FATFS fs;
     sd_card_t *pSD;
     FIL file;
-
 };
 
 #endif

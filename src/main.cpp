@@ -1,10 +1,10 @@
-#include "pico/stdlib.h"
 #include "hardware/i2c.h"
+#include "pico/stdlib.h"
 #ifdef DEBUG
 #include "tusb.h"
 #endif
-#include "pts.hpp"
 #include "pins.hpp"
+#include "pts.hpp"
 
 PTS pts;
 

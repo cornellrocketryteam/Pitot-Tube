@@ -41,5 +41,4 @@ void PTS::execute() {
         printf("SD: %s (%d)\n", FRESULT_str(fr), fr);
 #endif
     }
-
 }
