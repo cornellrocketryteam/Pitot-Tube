@@ -11,7 +11,7 @@ public:
     void execute();
 
 private:
-    double pressure, temperature;
+    int pressure, temperature;
     FATFS fs;
     sd_card_t *pSD;
     FIL file;

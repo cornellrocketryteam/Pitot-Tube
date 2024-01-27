@@ -10,7 +10,7 @@ class NPA730 {
 public:
     NPA730(i2c_inst_t *i2c_type);
     bool begin();
-    bool read(double *pressure, double *temp);
+    bool read(int *pressure, int *temp);
 
 private:
     i2c_inst_t *i2c;

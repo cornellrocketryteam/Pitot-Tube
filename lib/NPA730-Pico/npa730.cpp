@@ -11,7 +11,7 @@ bool NPA730::begin() {
     return true;
 }
 
-bool NPA730::read(double *pressure, double *temp) {
+bool NPA730::read(int *pressure, int *temp) {
     uint8_t buf[4];
 
     double pressure_min = -1.25;

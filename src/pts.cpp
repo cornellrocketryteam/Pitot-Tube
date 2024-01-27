@@ -29,7 +29,7 @@ void PTS::execute() {
 #endif
     }
 
-    if (f_printf(&file, "%d,%d\n", pressure, temperature) < 0) {
+    if (f_printf(&file, "%d,%d,%d\n", to_ms_since_boot(get_absolute_time()), pressure, temperature) < 0) {
 #ifdef VERBOSE
         printf("SD: %s (%d)\n", FRESULT_str(fr), fr);
 #endif
