@@ -3,10 +3,10 @@
 #include "pins.hpp"
 #include <cstdio>
 
-NPA730 npa730(I2C_PORT);
+NPA730 npa730_1(I2C_PORT);
 
 PTS::PTS() {
-    npa730.begin();
+    npa730_1.begin();
 
     pSD = sd_get_by_num(0);
     FRESULT fr = f_mount(&fs, "", 1);
@@ -19,7 +19,7 @@ PTS::PTS() {
 }
 
 void PTS::execute() {
-    npa730.read(&pressure, &temperature);
+    npa730_1.read(&pressure_1, &temperature_1);
 
     FRESULT fr = f_open(&file, "log.txt", FA_OPEN_APPEND | FA_WRITE);
 
@@ -29,7 +29,7 @@ void PTS::execute() {
 #endif
     }
 
-    if (f_printf(&file, "%d,%d,%d\n", to_ms_since_boot(get_absolute_time()), pressure, temperature) < 0) {
+    if (f_printf(&file, "%d,%d,%d\n", to_ms_since_boot(get_absolute_time()), pressure_1, temperature_1) < 0) {
 #ifdef VERBOSE
         printf("SD: %s (%d)\n", FRESULT_str(fr), fr);
 #endif
