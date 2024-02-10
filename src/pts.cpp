@@ -7,9 +7,6 @@ NPA730 npa730_0(i2c0);
 NPA730 npa730_1(i2c1);
 
 PTS::PTS() {
-    npa730_0.begin();
-    npa730_1.begin();
-
     pSD = sd_get_by_num(0);
     FRESULT fr = f_mount(&fs, "", 1);
 
@@ -23,6 +20,13 @@ PTS::PTS() {
 void PTS::execute() {
     npa730_0.read(&pressure_0, &temperature_0);
     npa730_1.read(&pressure_1, &temperature_1);
+
+#ifdef VERBOSE
+    printf("---------- BEGIN LOOP ----------\n");
+    printf("Sensor 0: (%d, %d)\n", pressure_0, temperature_0);
+    printf("Sensor 1: (%d, %d)\n", pressure_1, temperature_1);
+    printf("----------- END LOOP -----------\n\n");
+#endif
 
     FRESULT fr = f_open(&file, "log.txt", FA_OPEN_APPEND | FA_WRITE);
 
