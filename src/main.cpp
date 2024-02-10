@@ -11,13 +11,20 @@ PTS pts;
 int main() {
     stdio_init_all();
 
-    i2c_init(I2C_PORT, 400 * 1000);
+    i2c_init(i2c0, 400 * 1000);
+    i2c_init(i2c1, 400 * 1000);
 
-    gpio_set_function(I2C_SDA, GPIO_FUNC_I2C);
-    gpio_set_function(I2C_SCL, GPIO_FUNC_I2C);
+    gpio_set_function(I2C_SDA_0, GPIO_FUNC_I2C);
+    gpio_set_function(I2C_SCL_0, GPIO_FUNC_I2C);
 
-    gpio_pull_up(I2C_SDA);
-    gpio_pull_up(I2C_SCL);
+    gpio_set_function(I2C_SDA_1, GPIO_FUNC_I2C);
+    gpio_set_function(I2C_SCL_1, GPIO_FUNC_I2C);
+
+    gpio_pull_up(I2C_SDA_0);
+    gpio_pull_up(I2C_SCL_0);
+
+    gpio_pull_up(I2C_SDA_1);
+    gpio_pull_up(I2C_SCL_1);
 
 #ifdef DEBUG
     while (!tud_cdc_connected()) {

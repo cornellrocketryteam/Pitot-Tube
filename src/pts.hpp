@@ -21,8 +21,8 @@ private:
     /**
      * Raw pressure and temperature readings from both sensors.
      */
+    int pressure_0, temperature_0;
     int pressure_1, temperature_1;
-    int pressure_2, temperature_2;
 
     /**
      * SD card interface metadata.
