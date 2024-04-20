@@ -30,6 +30,12 @@ private:
     FATFS fs;
     sd_card_t *pSD;
     FIL file;
+
+    /**
+     * Counters for log file splitting and naming.
+     */
+    uint32_t cycle_count;
+    int file_count;
 };
 
 #endif

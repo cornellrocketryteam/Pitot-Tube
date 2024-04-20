@@ -10,11 +10,11 @@ PTS::PTS() {
     pSD = sd_get_by_num(0);
     FRESULT fr = f_mount(&fs, "", 1);
 
-    if (fr != FR_OK) {
 #ifdef VERBOSE
+    if (fr != FR_OK) {
         printf("SD: %s (%d)\n", FRESULT_str(fr), fr);
-#endif
     }
+#endif
 }
 
 void PTS::execute() {
@@ -28,13 +28,19 @@ void PTS::execute() {
     printf("----------- END LOOP -----------\n\n");
 #endif
 
-    FRESULT fr = f_open(&file, "log.txt", FA_OPEN_APPEND | FA_WRITE);
-
-    if (fr != FR_OK && fr != FR_EXIST) {
-#ifdef VERBOSE
-        printf("SD: %s (%d)\n", FRESULT_str(fr), fr);
-#endif
+    if (cycle_count == 60000) {
+        cycle_count = 0;
+        file_count++;
     }
+    char filename[10];
+    sprintf(filename, "%d.csv", file_count);
+    FRESULT fr = f_open(&file, (const char *)filename, FA_OPEN_APPEND | FA_WRITE);
+
+#ifdef VERBOSE
+    if (fr != FR_OK && fr != FR_EXIST) {
+        printf("SD: %s (%d)\n", FRESULT_str(fr), fr);
+    }
+#endif
 
     if (f_printf(&file, "%d,%d,%d,%d,%d\n", to_ms_since_boot(get_absolute_time()), pressure_0, temperature_0, pressure_1, temperature_1) < 0) {
 #ifdef VERBOSE
@@ -43,9 +49,10 @@ void PTS::execute() {
     }
 
     fr = f_close(&file);
-    if (FR_OK != fr) {
 #ifdef VERBOSE
+    if (FR_OK != fr) {
         printf("SD: %s (%d)\n", FRESULT_str(fr), fr);
-#endif
     }
+#endif
+    cycle_count++;
 }
