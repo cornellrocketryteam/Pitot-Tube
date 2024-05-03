@@ -9,6 +9,10 @@
 PTS pts;
 
 int main() {
+    gpio_init(LED);
+    gpio_set_dir(LED, GPIO_OUT);
+    gpio_put(LED, 1);
+
     sleep_ms(2000000);
     stdio_init_all();
 

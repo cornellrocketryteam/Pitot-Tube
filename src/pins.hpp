@@ -10,3 +10,5 @@
 #define SPI_SCK 18
 
 #define SD_CS 17
+
+#define LED 25

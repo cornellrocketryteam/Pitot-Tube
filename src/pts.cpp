@@ -28,7 +28,7 @@ void PTS::execute() {
     printf("----------- END LOOP -----------\n\n");
 #endif
 
-    if (cycle_count == 60000) {
+    if (cycle_count == 200000) {
         cycle_count = 0;
         file_count++;
     }
